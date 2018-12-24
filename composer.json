@@ -1,0 +1,25 @@
+{
+    "name": "barcamp/module-graphl",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "l.roettig@techdivision.com",
+            "name": "Lars Roettig"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~7.1.3||~7.2.0",
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barcamp\\Graphl\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

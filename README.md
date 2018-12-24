@@ -39,3 +39,26 @@ bin/magento setup:up
 }
 ```
 
+```graphql 
+{
+  pickUpStores (
+      filter:
+    {
+      name: {
+                like:"Brick and Mortar 1%"
+            }
+    }
+      pageSize: 10
+       currentPage: 1
+  ){
+    total_count
+      items {
+        name
+        street
+        postcode
+      }
+  }
+}
+```
+
+

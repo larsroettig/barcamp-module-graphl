@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="pickup_stores" resource="default" engine="innodb" comment="Pick Up Stores">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="64" comment="name"/>
+        <column xsi:type="varchar" name="street" nullable="true" length="64" comment="street"/>
+        <column xsi:type="varchar" name="street_num" nullable="true" length="64" comment="Street Number"/>
+        <column xsi:type="varchar" name="city" nullable="true" length="64" comment="Street Number"/>
+        <column xsi:type="varchar" name="postcode" nullable="true" length="64" comment="PostCode"/>
+        <column xsi:type="varchar" name="open_hours" nullable="true" length="64" comment="Open Hours"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

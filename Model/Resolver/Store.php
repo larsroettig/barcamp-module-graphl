@@ -2,13 +2,38 @@
 declare(strict_types=1);
 
 namespace Test\GraphQL\Model\Resolver;
+
+use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as SearchCriteriaBuilder;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
+use Test\GraphQL\Model\Store\GetList;
 
 
 class Store implements ResolverInterface
 {
+
+    /**
+     * @var GetList
+     */
+    private $getList;
+
+    /**
+     * @var SearchCriteriaBuilder
+     */
+    private $searchCriteriaBuilder;
+
+    /**
+     * PickUpStoresList constructor.
+     * @param GetList $getList
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     */
+    public function __construct(GetList $getList, SearchCriteriaBuilder $searchCriteriaBuilder)
+    {
+        $this->getList = $getList;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+    }
+
     /**
      * @inheritdoc
      */
@@ -18,24 +43,17 @@ class Store implements ResolverInterface
         ResolveInfo $info,
         array $value = null,
         array $args = null
-    ) {
-        $stores = [
-            [
-                'name' => 'Brick and Mortar Kolbermoor',
-                'street' => 'JosefMeier Straße',
-                'street_num' => '1002',
-                'postcode' => '83059',
-            ],
-            [
-                'name' => 'Brick and Mortar  Erfurt',
-                'street' => 'Max Meier Straße',
-                'street_num' => '102',
-                'postcode' => '99338',
-            ],
-        ];
+    )
+    {
+        $searchCriteria = $this->searchCriteriaBuilder->build('pickup_stores', $args);
+        $searchCriteria->setCurrentPage($args['currentPage']);
+        $searchCriteria->setPageSize($args['pageSize']);
+
+        $searchResult = $this->getList->execute($searchCriteria);
+
         return [
-            'total_count' => count($stores),
-            'items' => $stores
+            'total_count' => $searchResult->getTotalCount(),
+            'items' => $searchResult->getItems()
         ];
     }
 }

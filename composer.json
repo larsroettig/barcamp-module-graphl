@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Barcamp\\Graphl\\": ""
+            "Test\\GraphQL\\": ""
         },
         "files": [
             "registration.php"

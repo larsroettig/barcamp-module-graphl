@@ -1,11 +1,23 @@
 type Query {
-    pickUpStores:pickUpStoresOutput @resolver(class: "\\Test\\GraphQL\\Model\\Resolver\\Store") @doc(description: "")
+    pickUpStores(
+    filter: PickUpStoresFilterInput @doc(description: "")
+    pageSize: Int = 5 @doc(description: ".")
+    currentPage: Int = 1 @doc(description: "")
+):pickUpStoresOutput @resolver(class: "\\Test\\GraphQL\\Model\\Resolver\\Store") @doc(description: "")
 }
+
+input PickUpStoresFilterInput {
+    name: FilterTypeInput  @doc(description: "")
+    postcode: FilterTypeInput @doc(description: ""),
+    or: PickUpStoresFilterInput
+}
+
 type pickUpStoresOutput {
     total_count:  Int @doc(description: "")
-    items: [pickUpStore] @doc(description: "")
+    items: [PickUpStore] @doc(description: "")
 }
-type pickUpStore {
+
+type PickUpStore {
     name: String @doc(description: ""),
     street: String @doc(description: ""),
     street_num: String @doc(description: ""),

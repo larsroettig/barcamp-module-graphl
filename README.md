@@ -23,7 +23,7 @@ bin/magento setup:up
 
 ## Possibly Query (https://your_domain.test/graphql)
 
-![GraphQL_Playground](https://github.com/larsroettig/Barcamp_Graphl/blob/master/doc/GraphQL_Playground.png)
+![GraphQL_Playground](https://github.com/larsroettig/barcamp-module-graphl/blob/master/doc/GraphQL_Playground.png)
 
 ```graphql 
 {

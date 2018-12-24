@@ -1,4 +1,4 @@
-# Graphql testing Module for Magento 2.3
+# GraphQL testing Module for Magento 2.3
 
 *Use case:* (PickUpFromStore)
 We have Brick and Mortar Stores we need graphql endpoint
